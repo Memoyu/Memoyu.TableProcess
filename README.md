@@ -20,4 +20,9 @@
 
 #### 效果
 
-![Main]( "Main")
+![Main](https://github.com/Memoyu/Memoyu.TableProcess/blob/master/Image/main.png "Main")
+
+![Detail](https://github.com/Memoyu/Memoyu.TableProcess/blob/master/Image/detail.png "Detail")
+
+![Show](https://github.com/Memoyu/Memoyu.TableProcess/blob/master/Image/Table.gif "Show")
+
