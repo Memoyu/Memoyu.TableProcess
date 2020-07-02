@@ -1,0 +1,88 @@
+﻿<Window x:Class="TableProcess.Views.EditTableView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:views="clr-namespace:TableProcess.Views"
+             mc:Ignorable="d"
+             WindowStartupLocation="CenterScreen"
+             Title="编辑货单" Width="900" Height="800">
+    <materialDesign:DialogHost  IsOpen="{Binding DialogIsOpen}">
+        <materialDesign:DialogHost.DialogContent>
+            <Border Width="300" Height="150" Background="White">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ProgressBar Style="{DynamicResource MaterialDesignCircularProgressBar}" Value="0" Width="50" IsIndeterminate="True"/>
+                    <TextBlock Margin="0 50 0 0" Text="正在加载,请稍候..."  FontSize="20" Foreground="#737373" />
+                </StackPanel>
+            </Border>
+        </materialDesign:DialogHost.DialogContent>
+        <Grid>
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Background="#808080"   LastChildFill="False"  Panel.ZIndex="1" >
+                    <StackPanel Orientation="Horizontal" Panel.ZIndex="1" DockPanel.Dock="Right">
+                        <Button Style="{StaticResource MaterialDesignToolButton}"   ToolTip="导出汇总Excel表单" Margin="20 0 15 0">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon  Kind="Folder" Foreground="White" Width="25"  Height="25" VerticalAlignment="Center"/>
+                                <TextBlock Margin="5 0 0 0" Text="导出汇总" FontSize="16" Foreground="White" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <Button.InputBindings>
+                                <MouseBinding MouseAction="LeftClick" Command="{Binding RelativeSource={RelativeSource  
+                                                    AncestorType={x:Type views:EditTableView}},  Path=DataContext.ExportSummaryExcelCommand}" CommandParameter="" />
+                            </Button.InputBindings>
+                        </Button>
+                    </StackPanel>
+
+                </DockPanel>
+
+                <DataGrid Grid.Row="1" ItemsSource="{Binding GoodsSheet}"  Padding="10,0"   IsReadOnly="False" 
+                  CanUserAddRows="False" AutoGenerateColumns="False" >
+                    <DataGrid.Columns>
+                        <!-- UpdateSourceTrigger=PropertyChanged 开启后会实现数据修改同步 -->
+                        <materialDesign:DataGridComboBoxColumn Header="路线" IsEditable="True"
+                                                               MinWidth="100"
+                                                               SelectedValueBinding="{Binding Line , UpdateSourceTrigger=PropertyChanged}"
+                                                               ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:EditTableView}}, Path=DataContext.Lines}">
+                        </materialDesign:DataGridComboBoxColumn>
+                        <DataGridTextColumn Binding="{Binding GoodsName}" IsReadOnly="True" 
+                                            Header="商品名"  MinWidth="100"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Head}"  IsReadOnly="True"
+                                            Header="团长"  MinWidth="100"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Address}"  IsReadOnly="True"
+                                            Header="小区"  MinWidth="100"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding GoodsSpec}"
+                                            Header="规格"  MinWidth="100"   IsReadOnly="True"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Price}"  IsReadOnly="True"
+                                            Header="单价"  MinWidth="100"
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Count}" IsReadOnly="True"
+                                            Header="订购数量"  MinWidth="100"  
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                        <DataGridTextColumn Binding="{Binding Amount}"  IsReadOnly="True"
+                                            Header="总价"  MinWidth="100" 
+                                            ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
+                                            EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <materialDesign:Snackbar  x:Name="Snackbar" MessageQueue="{Binding  SnackMessageQueue}" >
+                <!--<materialDesign:SnackbarMessage 
+                    Content="{Binding SnackMessage}"/>-->
+            </materialDesign:Snackbar>
+        </Grid>
+    </materialDesign:DialogHost>
+</Window>
