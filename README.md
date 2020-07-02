@@ -10,13 +10,13 @@
 
  * 参照了大佬的设计实现：[痕迹大佬的项目](https://github.com/HenJigg/WPF-Xamarin-Blazor-Examples)
 
-​	* 界面：[Material Design In XAML Toolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)
+ * 界面：[Material Design In XAML Toolkit](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit)
 
-​	* 容器：[Autofac](https://github.com/autofac/Autofac)
+ * 容器：[Autofac](https://github.com/autofac/Autofac)
 
-​	* MVVM：[MvvmLight](https://archive.codeplex.com/?p=mvvmlight)
+ * MVVM：[MvvmLight](https://archive.codeplex.com/?p=mvvmlight)
 
-​ * Excel操作：[NPOI](https://github.com/dotnetcore/NPOI)
+ * Excel操作：[NPOI](https://github.com/dotnetcore/NPOI)
 
 #### 效果
 
